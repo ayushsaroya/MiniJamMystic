@@ -13,4 +13,6 @@
 *.cs
 *.pdb
 *.cs
-Library/ArtifactDB
+Library/
+Temp/
+Logs/
