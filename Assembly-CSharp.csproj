@@ -59,7 +59,12 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.11f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Test.cs" />
+    <Compile Include="Assets\Scripts\Sigil\Combo.cs" />
+    <Compile Include="Assets\Scripts\Player\Movement.cs" />
+    <Compile Include="Assets\Scripts\Player\Spell Pickup.cs" />
+    <Compile Include="Assets\Scripts\Sigil\Key.cs" />
+    <Compile Include="Assets\Scripts\Sigil\Activate.cs" />
+    <Compile Include="Assets\Scripts\Game\GameState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
