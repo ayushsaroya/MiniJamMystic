@@ -21,6 +21,9 @@
 *.vsidx
 *.json
 *.asset
+*.cache
+*.sln
+*.csproj
 
 # Unity3D cache directory
 [Cc]ache/
