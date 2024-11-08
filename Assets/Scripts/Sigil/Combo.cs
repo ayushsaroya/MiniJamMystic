@@ -4,99 +4,115 @@ using UnityEngine;
 
 public class Combo : MonoBehaviour
 {
-    private List<GameObject> keys;
-    private string[] smallLetters;
-    private string[] mediumLetters;
-    private string[] largeLetters;
-    private string[] allLetters;
-    private string[] keySet;
-    private string difficulty;
-    // Start is called before the first frame update
-    void Start()
+    private List<string> keys;
+    [SerializeField]
+    private GameObject keySprite;
+    // Easy => smallLetters
+    // Medium => mediumLetters
+    // Hard => hardLetters
+    // Mystic => allLetters
+    const string DIFFICULTY_EASY = "Easy";
+    const string DIFFICULTY_MEDIUM = "Medium";
+    const string DIFFICULTY_HARD = "Hard";
+    const string DIFFICULTY_MYSTIC = "Mystic";
+    private string[] smallLetters = new string[] {
+        "H",
+        "J",
+        "K",
+        "L"
+    };
+    private string[] mediumLetters = new string[] {
+        "H",
+        "J",
+        "K",
+        "L"
+    };
+    private string[] largeLetters = new string[] {
+        "F",
+        "G",
+        "H",
+        "J",
+        "K",
+        "L"
+    };
+    private string[] allLetters = new string[] {
+        "B",
+        "C",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "T",
+        "U",
+        "V",
+        "X",
+        "Y",
+        "Z"
+    };
+
+    Dictionary<string, int> keyComboCount = new Dictionary<string, int>()
     {
-        // Easy => smallLetters
-        // Medium => mediumLetters
-        // Hard => hardLetters
-        // Mystic => allLetters
-        difficulty = "Easy";
-        string[] smallLetters = new string[] {
-            "H",
-            "J",
-            "K",
-            "L"
-        };
+        {DIFFICULTY_EASY, 2}, 
+        {DIFFICULTY_MEDIUM, 4}, 
+        {DIFFICULTY_HARD, 5},
+        {DIFFICULTY_MYSTIC, 6}
+    };
+    private string difficulty = DIFFICULTY_EASY;
 
-        string[] mediumLetters = new string[]
+    public void generateCombo(string difficulty = DIFFICULTY_EASY)
+    {
+        keys = new List<string>();
+        this.difficulty = difficulty;
+        if (difficulty == DIFFICULTY_EASY)
         {
-            "H",
-            "J",
-            "K",
-            "L"
-        };
-
-        string[] largeLetters = new string[]
-        {
-            "F",
-            "G",
-            "H",
-            "J",
-            "K",
-            "L"
-        };
-
-        string[] allLetters = new string[] {
-            "B",
-            "C",
-            "E",
-            "F",
-            "G",
-            "H",
-            "I",
-            "J",
-            "K",
-            "L",
-            "M",
-            "N",
-            "O",
-            "P",
-            "Q",
-            "R",
-            "T",
-            "U",
-            "V",
-            "X",
-            "Y",
-            "Z"
-        };
-
-        if (difficulty == "Easy")
-        {
-            keySet = smallLetters;
+            setKeys(smallLetters);
         }
-        else if (difficulty == "Medium")
+        else if (difficulty == DIFFICULTY_MEDIUM)
         {
-            keySet = mediumLetters;
+            setKeys(mediumLetters);
         }
-        else if (difficulty == "Hard")
+        else if (difficulty == DIFFICULTY_HARD)
         {
-            keySet = largeLetters;
+            setKeys(largeLetters);
         }
-        else if (difficulty == "Mystic")
+        else if (difficulty == DIFFICULTY_MYSTIC)
         {
+            setKeys(allLetters);
+        }
+    }
+    public List<string> getKeys()
+    {
+        return keys;
+    }
 
-        }
-
-        keys = new List<GameObject>();
-        for (int i = 0; i < 5; i++)
+    private void setKeys(string[] letterSet)
+    {
+        int count = keyComboCount[difficulty];
+        for (int i = 0; i < count; i++)
         {
-            Key key = new Key();
-            keys.Add(new );
+            int random = Random.Range(0, letterSet.Length);
+            keys.Add(letterSet[random]);
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public Dictionary<string, int> getKeyComboCount()
     {
-        
+        return keyComboCount;
     }
+
+    public string getDifficulty()
+    {
+        return difficulty;
+    }
+
 }
