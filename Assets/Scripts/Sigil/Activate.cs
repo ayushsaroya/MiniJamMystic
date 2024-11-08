@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class Activate : MonoBehaviour
@@ -34,6 +35,19 @@ public class Activate : MonoBehaviour
 
     private void displayCombo()
     {
-        
+        Combo comboScript = combo.GetComponent<Combo>();
+        comboScript.generateCombo();
+        List<string> keys = comboScript.getKeys();
+        for (int i = 0; i < keys.Count; i++)
+        {
+            Debug.Log(keys[i]);
+        }
+        for (int i = 0; i < keys.Count; i++)
+        {
+            GameObject key = Instantiate(combo, this.transform, true);
+            Sprite letter = Resources.Load<Sprite>("Assets/Sprites/Keys/" + keys[i]);
+            key.GetComponent<SpriteRenderer>().sprite = letter;
+        }
+        colliding = false;
     }
 }

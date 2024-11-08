@@ -62,7 +62,6 @@
     <Compile Include="Assets\Scripts\Sigil\Combo.cs" />
     <Compile Include="Assets\Scripts\Player\Movement.cs" />
     <Compile Include="Assets\Scripts\Player\Spell Pickup.cs" />
-    <Compile Include="Assets\Scripts\Sigil\Key.cs" />
     <Compile Include="Assets\Scripts\Sigil\Activate.cs" />
     <Compile Include="Assets\Scripts\Game\GameState.cs" />
   </ItemGroup>
