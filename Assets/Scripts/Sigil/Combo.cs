@@ -95,6 +95,12 @@ public class Combo : MonoBehaviour
         return keys;
     }
 
+    public List<string> removeKey(string key)
+    {
+        keys.Remove(key);
+        return keys;
+    }
+
     public GameObject getKeyObject()
     {
         return keyObject;
