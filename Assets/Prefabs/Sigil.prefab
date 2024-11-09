@@ -171,4 +171,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6455b368e5fb4ba45b875185e2c62a78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combo: {fileID: 8567973794718592275, guid: 7033a4676fe6a9c42a6b2c99ca795c1e, type: 3}
+  comboObject: {fileID: 8567973794718592275, guid: 7033a4676fe6a9c42a6b2c99ca795c1e, type: 3}
