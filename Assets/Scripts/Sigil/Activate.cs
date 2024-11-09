@@ -7,7 +7,7 @@ public class Activate : MonoBehaviour
 {
     private bool colliding;
     [SerializeField]
-    private GameObject combo;
+    private GameObject comboObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,18 +35,24 @@ public class Activate : MonoBehaviour
 
     private void displayCombo()
     {
-        Combo comboScript = combo.GetComponent<Combo>();
-        comboScript.generateCombo();
-        List<string> keys = comboScript.getKeys();
+        Combo combo = comboObject.GetComponent<Combo>();
+        combo.generateCombo();
+        List<string> keys = combo.getKeys();
         for (int i = 0; i < keys.Count; i++)
         {
             Debug.Log(keys[i]);
         }
+        GameObject currentCombo = Instantiate(comboObject, this.gameObject.transform.position, this.gameObject.transform.rotation, this.gameObject.transform);
         for (int i = 0; i < keys.Count; i++)
         {
-            GameObject key = Instantiate(combo, this.transform, true);
-            Sprite letter = Resources.Load<Sprite>("Assets/Sprites/Keys/" + keys[i]);
-            key.GetComponent<SpriteRenderer>().sprite = letter;
+            GameObject keyObject = currentCombo.GetComponent<Combo>().getKeyObject();
+            GameObject key = Instantiate(keyObject, currentCombo.transform.position, currentCombo.transform.rotation, currentCombo.transform);
+            Sprite letter = Resources.Load<Sprite>("Sprites/Keys/" + keys[i] + ".png");
+            if (letter != null)
+            {
+                Debug.Log("Not null");
+                key.GetComponent<SpriteRenderer>().sprite = letter;
+            }
         }
         colliding = false;
     }

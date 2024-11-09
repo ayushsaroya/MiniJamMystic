@@ -6,7 +6,7 @@ public class Combo : MonoBehaviour
 {
     private List<string> keys;
     [SerializeField]
-    private GameObject keySprite;
+    private GameObject keyObject;
     // Easy => smallLetters
     // Medium => mediumLetters
     // Hard => hardLetters
@@ -93,6 +93,11 @@ public class Combo : MonoBehaviour
     public List<string> getKeys()
     {
         return keys;
+    }
+
+    public GameObject getKeyObject()
+    {
+        return keyObject;
     }
 
     private void setKeys(string[] letterSet)
