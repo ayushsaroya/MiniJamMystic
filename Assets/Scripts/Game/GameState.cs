@@ -72,7 +72,6 @@ public class GameState : MonoBehaviour
         {
             sigilCount += 2;
             spawnSigils();
-            destroySigils(sigils);
         }
     }
 
@@ -100,7 +99,6 @@ public class GameState : MonoBehaviour
     {
         spellsPickedUp = spells;
         spellsCollected.text = getSpellsPickedUp() + " Spells Collected";
-        Debug.Log("spellsPickedUp is now: " + spellsPickedUp);
     }
 
     public int getLives()
@@ -134,15 +132,10 @@ public class GameState : MonoBehaviour
 
             Vector3 sigilPosition = new Vector3(x, y, 0) + transform.position;
 
-            Instantiate(sigil, sigilPosition, Quaternion.identity);
-        }
-    }
-
-    public void destroySigils(GameObject[] sigils)
-    {
-        foreach (GameObject sigil in sigils)
-        {
-            Destroy(sigil);
+            GameObject newSigil = Instantiate(sigil, sigilPosition, Quaternion.identity);
+            int random = Random.Range(0, 5);
+            Sprite sigilSprite = Resources.Load<Sprite>("Sprites/Sygil/sygil" + random);
+            newSigil.GetComponent<SpriteRenderer>().sprite = sigilSprite;
         }
     }
 }

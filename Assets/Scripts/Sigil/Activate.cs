@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static System.Runtime.CompilerServices.RuntimeHelpers;
+using Random = UnityEngine.Random;
 
 public class Activate : MonoBehaviour
 {
@@ -20,12 +22,17 @@ public class Activate : MonoBehaviour
     List<string> keys;
     private int spellsNeeded;
     GameState gameStateScript;
+    private int randomSprite;
 
     // Update is called once per frame
     private void Start()
     {
         spellsNeeded = 3;
         gameStateScript = GameObject.Find("GameState").GetComponent<GameState>();
+        randomSprite = Random.Range(0, 5);
+        Sprite sigilSprite = Resources.Load<Sprite>("Sprites/Sygil/sygil" + randomSprite);
+        this.GetComponent<SpriteRenderer>().sprite = sigilSprite;
+
     }
 
     void Update()
@@ -114,6 +121,7 @@ public class Activate : MonoBehaviour
     {
         hideCombo();
         gameStateScript.setSpellsPickedUp(gameStateScript.getSpellsPickedUp() - spellsNeeded);
+        this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Sygil/complete_sygil" + randomSprite);
         sigilCompleted = true;
     }
 

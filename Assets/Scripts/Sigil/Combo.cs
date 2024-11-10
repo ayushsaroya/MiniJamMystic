@@ -72,6 +72,7 @@ public class Combo : MonoBehaviour
     {
         gameState = GameObject.Find("GameState").GetComponent<GameState>();
         difficulty = gameState.getDifficulty();
+
     }
     public void generateCombo(string difficulty = DIFFICULTY_EASY)
     {
