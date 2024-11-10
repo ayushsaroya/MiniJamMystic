@@ -7,6 +7,7 @@ public class Combo : MonoBehaviour
     private List<string> keys;
     [SerializeField]
     private GameObject keyObject;
+    private GameState gameState;
     // Easy => smallLetters
     // Medium => mediumLetters
     // Hard => hardLetters
@@ -65,8 +66,13 @@ public class Combo : MonoBehaviour
         {DIFFICULTY_HARD, 5},
         {DIFFICULTY_MYSTIC, 6}
     };
-    private string difficulty = DIFFICULTY_EASY;
+    private string difficulty;
 
+    private void Start()
+    {
+        gameState = GameObject.Find("GameState").GetComponent<GameState>();
+        difficulty = gameState.getDifficulty();
+    }
     public void generateCombo(string difficulty = DIFFICULTY_EASY)
     {
         keys = new List<string>();
@@ -127,5 +133,4 @@ public class Combo : MonoBehaviour
     {
         return difficulty;
     }
-
 }

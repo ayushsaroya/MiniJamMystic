@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4432962109812943904}
   m_Layer: 0
   m_Name: Sigil
-  m_TagString: Untagged
+  m_TagString: Sigil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,4 +172,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   comboObject: {fileID: 8567973794718592275, guid: 7033a4676fe6a9c42a6b2c99ca795c1e, type: 3}
-  gameState: {fileID: 1168081467663670224, guid: 296462be868fa584980e0ba307685904, type: 3}
+  gameState: {fileID: 0}

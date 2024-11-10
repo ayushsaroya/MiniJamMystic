@@ -11,8 +11,6 @@ public class Activate : MonoBehaviour
     private bool colliding = false;
     [SerializeField]
     private GameObject comboObject;
-    [SerializeField]
-    private GameObject gameState;
     private float xOffset = 0.25f;
     private float yOffset = 0.5f;
     private KeyCode keyCode;
@@ -27,13 +25,11 @@ public class Activate : MonoBehaviour
     private void Start()
     {
         spellsNeeded = 3;
-        gameStateScript = gameState.GetComponent<GameState>();
+        gameStateScript = GameObject.Find("GameState").GetComponent<GameState>();
     }
 
     void Update()
     {
-        Debug.Log("spu: " + gameStateScript.getSpellsPickedUp());
-        Debug.Log("sn: " + spellsNeeded);
         int spellsPickedUp = gameStateScript.getSpellsPickedUp();
         if (colliding && !sigilCompleted && spellsPickedUp >= spellsNeeded)
         {
@@ -119,5 +115,10 @@ public class Activate : MonoBehaviour
         hideCombo();
         gameStateScript.setSpellsPickedUp(gameStateScript.getSpellsPickedUp() - spellsNeeded);
         sigilCompleted = true;
+    }
+
+    public bool getCompleted()
+    {
+        return sigilCompleted;
     }
 }
