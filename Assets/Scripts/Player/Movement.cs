@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour
         transformScale = transform.localScale;
         rb = gameObject.GetComponent<Rigidbody2D>();
         rb.drag = 5;
-        //animator = gameObject.GetComponent<Animator>();
+        animator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -28,13 +28,17 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || 
             Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) {
             move();   
+        } else
+        {
+            animator.SetTrigger("StopMoving");
+            animator.ResetTrigger("StartMoving");
         }
     }
 
     private void move()
     {
-        //animator.SetTrigger("StartMoving");
-        //animator.ResetTrigger("StopMoving");
+        animator.SetTrigger("StartMoving");
+        animator.ResetTrigger("StopMoving");
 
 
         if (Input.GetKey(KeyCode.A))

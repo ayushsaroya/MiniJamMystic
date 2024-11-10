@@ -11,15 +11,13 @@ public class Combo : MonoBehaviour
     // Medium => mediumLetters
     // Hard => hardLetters
     // Mystic => allLetters
-    const string DIFFICULTY_EASY = "Easy";
-    const string DIFFICULTY_MEDIUM = "Medium";
-    const string DIFFICULTY_HARD = "Hard";
-    const string DIFFICULTY_MYSTIC = "Mystic";
+    public const string DIFFICULTY_EASY = "Easy";
+    public const string DIFFICULTY_MEDIUM = "Medium";
+    public const string DIFFICULTY_HARD = "Hard";
+    public const string DIFFICULTY_MYSTIC = "Mystic";
     private string[] smallLetters = new string[] {
         "H",
-        "J",
-        "K",
-        "L"
+        "J"
     };
     private string[] mediumLetters = new string[] {
         "H",
@@ -98,6 +96,10 @@ public class Combo : MonoBehaviour
     public List<string> removeKey(string key)
     {
         keys.Remove(key);
+        Debug.Log("removeKey");
+        for (int i = 0; i < keys.Count; i++) {
+            Debug.Log(i + ": " + keys[i]);
+        }
         return keys;
     }
 

@@ -8,46 +8,54 @@ using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 public class Activate : MonoBehaviour
 {
-    private bool colliding;
+    private bool colliding = false;
     [SerializeField]
     private GameObject comboObject;
+    [SerializeField]
+    private GameObject gameState;
     private float xOffset = 0.25f;
     private float yOffset = 0.5f;
     private KeyCode keyCode;
     private GameObject currentCombo;
     private float totalWidth;
+    private bool sigilCompleted = false;
     List<string> keys;
-    // Start is called before the first frame update
-    void Start()
-    {
-        colliding = false;
-    }
+    private int spellsNeeded;
+    GameState gameStateScript;
 
     // Update is called once per frame
+    private void Start()
+    {
+        spellsNeeded = 3;
+        gameStateScript = gameState.GetComponent<GameState>();
+    }
+
     void Update()
     {
-        if (colliding)
+        Debug.Log("spu: " + gameStateScript.getSpellsPickedUp());
+        Debug.Log("sn: " + spellsNeeded);
+        int spellsPickedUp = gameStateScript.getSpellsPickedUp();
+        if (colliding && !sigilCompleted && spellsPickedUp >= spellsNeeded)
         {
             if (Input.GetKey(KeyCode.Space) && transform.childCount == 0)
             {
-                Debug.Log("displaying combo");
                 displayCombo();
             }
 
             if (transform.childCount > 0)
             {
                 keys = comboObject.GetComponent<Combo>().getKeys();
-                if (keys.Count == 0)
+                string target = keys[0];
+                if (System.Enum.TryParse(target, true, out keyCode))
                 {
-                    completeSigil();
-                } else
-                {
-                    string target = keys[0];
-                    if (System.Enum.TryParse(target, true, out keyCode))
+                    if (Input.GetKeyDown(keyCode))
                     {
-                        if (Input.GetKeyDown(keyCode))
+                        keys = comboObject.GetComponent<Combo>().removeKey(target);
+                        if (keys.Count == 0)
                         {
-                            keys = comboObject.GetComponent<Combo>().removeKey(target);
+                            completeSigil();
+                        } else
+                        {
                             hideCombo();
                             Vector3 currentComboPos = this.gameObject.transform.localPosition + new Vector3(0, yOffset, 0);
                             currentCombo = Instantiate(comboObject, currentComboPos, this.gameObject.transform.rotation, this.gameObject.transform);
@@ -73,7 +81,7 @@ public class Activate : MonoBehaviour
     private void displayCombo()
     {
         Combo combo = comboObject.GetComponent<Combo>();
-        combo.generateCombo();
+        combo.generateCombo(Combo.DIFFICULTY_MEDIUM);
         
         List<string> keys = combo.getKeys();
         Vector3 currentComboPos = this.gameObject.transform.localPosition + new Vector3(0, yOffset, 0);
@@ -88,9 +96,6 @@ public class Activate : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        Combo comboScript = comboObject.GetComponent<Combo>();
-        comboScript.generateCombo();
-        List<string> keys = comboScript.getKeys();
     }
 
     private void formatKeys(GameObject currentCombo, float xOffset, float totalWidth, List<string> keys)
@@ -111,6 +116,8 @@ public class Activate : MonoBehaviour
 
     private void completeSigil()
     {
-        Debug.Log("completed sigil");
+        hideCombo();
+        gameStateScript.setSpellsPickedUp(gameStateScript.getSpellsPickedUp() - spellsNeeded);
+        sigilCompleted = true;
     }
 }

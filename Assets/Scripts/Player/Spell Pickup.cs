@@ -1,29 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SpellPickup : MonoBehaviour
 {
     [SerializeField]
-    private GameState gameState;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private GameObject gameState;
+    private GameState gameStateScript;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        gameStateScript = gameState.GetComponent<GameState>();
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Spell")
         {
+            int currentSpells = gameStateScript.getSpellsPickedUp();
+            gameStateScript.setSpellsPickedUp(currentSpells + 1);
             Destroy(collision.gameObject);
-            gameState.setSpellsPickedUp(gameState.getSpellsPickedUp() + 1);
         }
     }
 }
