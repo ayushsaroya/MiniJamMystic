@@ -51,7 +51,7 @@ public class GameState : MonoBehaviour
         if (time >= 1f)
         {
             seconds++;
-            timeText.text = seconds + "s";
+            timeText.text = seconds + "";
             time = 0f;
         }
 
@@ -126,7 +126,7 @@ public class GameState : MonoBehaviour
     public void setSpellsPickedUp(int spells)
     {
         spellsPickedUp = spells;
-        spellsCollected.text = getSpellsPickedUp() + " Spells Collected";
+        spellsCollected.text = getSpellsPickedUp() + "";
     }
 
     public int getLives()

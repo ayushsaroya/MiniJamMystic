@@ -14,6 +14,8 @@ public class SoundController : MonoBehaviour
     private AudioClip sigilFormation;
     [SerializeField]
     private AudioClip spellCollect;
+    [SerializeField]
+    private AudioClip playerHit;
     private AudioSource audioSource;
 
     private void Start()
@@ -58,6 +60,13 @@ public class SoundController : MonoBehaviour
     public void PlaySpellCollect()
     {
         audioSource.clip = spellCollect;
+        audioSource.volume = 0.25f;
+        audioSource.loop = false;
+        audioSource.Play();
+    }
+    public void PlayPlayerHit()
+    {
+        audioSource.clip = playerHit;
         audioSource.volume = 1.0f;
         audioSource.loop = false;
         audioSource.Play();

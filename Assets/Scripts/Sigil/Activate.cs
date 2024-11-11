@@ -14,7 +14,7 @@ public class Activate : MonoBehaviour
     private SoundController soundController;
     [SerializeField]
     private GameObject comboObject;
-    private float xOffset = 0.25f;
+    private float xOffset = 0.5f;
     private float yOffset = 0.5f;
     private KeyCode keyCode;
     private GameObject currentCombo;
@@ -73,22 +73,28 @@ public class Activate : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        colliding = true;
-        soundController.PlaySigilFormation();
+        if (collision.CompareTag("Player"))
+        {
+            colliding = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        colliding = false;
-        hideCombo();
-        soundController.StopSigilFormation();
+        if (collision.CompareTag("Player"))
+        {
+            colliding = false;
+            hideCombo();
+            soundController.StopSigilFormation();
+        }
     }
 
     private void displayCombo()
     {
         Combo combo = comboObject.GetComponent<Combo>();
         combo.generateCombo(Combo.DIFFICULTY_MEDIUM);
-        
+        soundController.PlaySigilFormation();
+
         List<string> keys = combo.getKeys();
         Vector3 currentComboPos = this.gameObject.transform.localPosition + new Vector3(0, yOffset, 0);
         currentCombo = Instantiate(comboObject, currentComboPos, this.gameObject.transform.rotation, this.gameObject.transform);

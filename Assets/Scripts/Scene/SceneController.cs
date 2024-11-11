@@ -8,7 +8,9 @@ public class SceneController : MonoBehaviour
     public void OnPlayClick()
     {
         SoundController soundController = GameObject.FindGameObjectWithTag("SoundController").GetComponent<SoundController>();
+        MusicController musicController = GameObject.FindGameObjectWithTag("MusicController").GetComponent<MusicController>();
         soundController.PlayClick();
+        musicController.PlayBackgroundMusic();
         SceneManager.LoadScene("Game");
     }
 
@@ -32,7 +34,9 @@ public class SceneController : MonoBehaviour
     public void OnReturnToMainMenuClick()
     {
         SoundController soundController = GameObject.FindGameObjectWithTag("SoundController").GetComponent<SoundController>();
+        MusicController musicController = GameObject.FindGameObjectWithTag("MusicController").GetComponent<MusicController>();
         soundController.PlayClick();
+        musicController.PlayMainMenuMusic();
         SceneManager.LoadScene("Home");
     }
 

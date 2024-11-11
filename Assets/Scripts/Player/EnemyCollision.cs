@@ -21,7 +21,7 @@ public class EnemyCollision : MonoBehaviour
         {
             animator.SetTrigger("Attacked");
             gameStateScript.setLives(gameStateScript.getLives() - 1);
-            livesText.text = gameStateScript.getLives() + " Lives";
+            livesText.text = gameStateScript.getLives() + "";
         }
     }
 

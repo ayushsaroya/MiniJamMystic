@@ -147,6 +147,7 @@ MonoBehaviour:
   sigilCompletion: {fileID: 8300000, guid: 700fb9f59b140a8448a91586a6951397, type: 3}
   sigilFormation: {fileID: 8300000, guid: 5162c46d704fd704a82790173a2dd1c1, type: 3}
   spellCollect: {fileID: 8300000, guid: 00d5d549a705f8b4cb891c33887ca5b4, type: 3}
+  playerHit: {fileID: 8300000, guid: d1f7f3fdbfd2dee4cb4ce730377793b6, type: 3}
 --- !u!114 &7106757969148484023
 MonoBehaviour:
   m_ObjectHideFlags: 0
