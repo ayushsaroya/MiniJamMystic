@@ -62,10 +62,12 @@
     <Compile Include="Assets\Scripts\Sigil\Combo.cs" />
     <Compile Include="Assets\Scripts\Scene\DontDestroyOnLoad.cs" />
     <Compile Include="Assets\Scripts\Player\Movement.cs" />
+    <Compile Include="Assets\Scripts\Scene\MusicController.cs" />
     <Compile Include="Assets\Scripts\Player\EnemyCollision.cs" />
     <Compile Include="Assets\Scripts\Player\Spell Pickup.cs" />
     <Compile Include="Assets\Scripts\Scene\SceneController.cs" />
     <Compile Include="Assets\Scripts\Sigil\Activate.cs" />
+    <Compile Include="Assets\Scripts\Scene\SoundController.cs" />
     <Compile Include="Assets\Scripts\Game\GameState.cs" />
   </ItemGroup>
   <ItemGroup>
