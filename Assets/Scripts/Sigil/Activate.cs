@@ -29,8 +29,8 @@ public class Activate : MonoBehaviour
     {
         spellsNeeded = 3;
         gameStateScript = GameObject.Find("GameState").GetComponent<GameState>();
-        randomSprite = Random.Range(0, 5);
-        Sprite sigilSprite = Resources.Load<Sprite>("Sprites/Sygil/sygil" + randomSprite);
+        randomSprite = Random.Range(1, 5);
+        Sprite sigilSprite = Resources.Load<Sprite>("Sprites/Sygil/complete_sygil" + randomSprite);
         this.GetComponent<SpriteRenderer>().sprite = sigilSprite;
 
     }
@@ -121,7 +121,7 @@ public class Activate : MonoBehaviour
     {
         hideCombo();
         gameStateScript.setSpellsPickedUp(gameStateScript.getSpellsPickedUp() - spellsNeeded);
-        this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Sygil/complete_sygil" + randomSprite);
+        this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Sygil/sygil" + randomSprite);
         sigilCompleted = true;
     }
 

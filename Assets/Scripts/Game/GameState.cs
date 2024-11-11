@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour
 {
@@ -24,7 +25,10 @@ public class GameState : MonoBehaviour
     private GameObject sigil;
     private int sigilRadius;
     private GameObject[] sigils;
-
+    GameObject gameCanvas;
+    GameObject pauseCanvas;
+    [SerializeField]
+    private SceneController sceneController;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +41,8 @@ public class GameState : MonoBehaviour
         time = 0;
         seconds = 0;
         difficulty = Combo.DIFFICULTY_EASY;
+        gameCanvas = GameObject.FindGameObjectWithTag("GameCanvas");
+        pauseCanvas = GameObject.FindGameObjectWithTag("PauseCanvas");
     }
 
     private void Update()
@@ -47,6 +53,24 @@ public class GameState : MonoBehaviour
             seconds++;
             timeText.text = seconds + "s";
             time = 0f;
+        }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            foreach (Transform child in gameCanvas.transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+            foreach (Transform child in pauseCanvas.transform)
+            {
+                child.gameObject.SetActive(true);
+            }
+            Time.timeScale = 0;
+        }
+
+        if (lives <= 0)
+        {
+            SceneManager.LoadScene("Lose");
         }
 
         if (difficulty == Combo.DIFFICULTY_EASY && seconds >= 15)
@@ -70,6 +94,10 @@ public class GameState : MonoBehaviour
         }
         if (!sigilRemaining && sigils.Length > 0)
         {
+            if (sigilCount >= 9)
+            {
+                sceneController.OnWin();
+            }
             sigilCount += 2;
             spawnSigils();
         }
@@ -133,8 +161,8 @@ public class GameState : MonoBehaviour
             Vector3 sigilPosition = new Vector3(x, y, 0) + transform.position;
 
             GameObject newSigil = Instantiate(sigil, sigilPosition, Quaternion.identity);
-            int random = Random.Range(0, 5);
-            Sprite sigilSprite = Resources.Load<Sprite>("Sprites/Sygil/sygil" + random);
+            int random = Random.Range(1, 5);
+            Sprite sigilSprite = Resources.Load<Sprite>("Sprites/Sygil/complete_sygil" + random);
             newSigil.GetComponent<SpriteRenderer>().sprite = sigilSprite;
         }
     }
