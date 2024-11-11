@@ -11,6 +11,7 @@ using Random = UnityEngine.Random;
 public class Activate : MonoBehaviour
 {
     private bool colliding = false;
+    private SoundController soundController;
     [SerializeField]
     private GameObject comboObject;
     private float xOffset = 0.25f;
@@ -32,7 +33,7 @@ public class Activate : MonoBehaviour
         randomSprite = Random.Range(1, 5);
         Sprite sigilSprite = Resources.Load<Sprite>("Sprites/Sygil/complete_sygil" + randomSprite);
         this.GetComponent<SpriteRenderer>().sprite = sigilSprite;
-
+        soundController = GameObject.FindGameObjectWithTag("SoundController").GetComponent<SoundController>();
     }
 
     void Update()
@@ -73,12 +74,14 @@ public class Activate : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         colliding = true;
+        soundController.PlaySigilFormation();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         colliding = false;
         hideCombo();
+        soundController.StopSigilFormation();
     }
 
     private void displayCombo()
@@ -123,6 +126,7 @@ public class Activate : MonoBehaviour
         gameStateScript.setSpellsPickedUp(gameStateScript.getSpellsPickedUp() - spellsNeeded);
         this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Sygil/sygil" + randomSprite);
         sigilCompleted = true;
+        soundController.PlaySigilCompletion();
     }
 
     public bool getCompleted()

@@ -50,6 +50,10 @@ public class SoundController : MonoBehaviour
         audioSource.loop = false;
         audioSource.Play();
     }
+    public void StopSigilFormation()
+    {
+        audioSource.Stop();
+    }
 
     public void PlaySpellCollect()
     {

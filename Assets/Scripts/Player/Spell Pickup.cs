@@ -8,10 +8,12 @@ public class SpellPickup : MonoBehaviour
     [SerializeField]
     private GameObject gameState;
     private GameState gameStateScript;
+    private SoundController soundController;
 
     private void Start()
     {
         gameStateScript = gameState.GetComponent<GameState>();
+        soundController = GameObject.FindGameObjectWithTag("SoundController").GetComponent<SoundController>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -19,6 +21,7 @@ public class SpellPickup : MonoBehaviour
         {
             int currentSpells = gameStateScript.getSpellsPickedUp();
             gameStateScript.setSpellsPickedUp(currentSpells + 1);
+            soundController.PlaySpellCollect();
             Destroy(collision.gameObject);
         }
     }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7858850396416142976}
   - component: {fileID: 2031769207758411038}
   - component: {fileID: 7066427413465224472}
+  - component: {fileID: 2215081749269820188}
   m_Layer: 0
   m_Name: MusicController
   m_TagString: MusicController
@@ -43,11 +44,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 71034e99bf15bc24c8ae83a44826bca2, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -143,3 +144,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenuMusic: {fileID: 8300000, guid: 761f67439fb57444a908a36699c3665f, type: 3}
   backgroundMusic: {fileID: 8300000, guid: 71034e99bf15bc24c8ae83a44826bca2, type: 3}
+--- !u!114 &2215081749269820188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792535117479784282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abc61e6fa22917546b258f866ae2f1db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 702061251252259180}
   - component: {fileID: 2620043734531801885}
   - component: {fileID: 3814789045796172837}
+  - component: {fileID: 7106757969148484023}
   m_Layer: 0
   m_Name: SoundController
   m_TagString: SoundController
@@ -146,3 +147,15 @@ MonoBehaviour:
   sigilCompletion: {fileID: 8300000, guid: 700fb9f59b140a8448a91586a6951397, type: 3}
   sigilFormation: {fileID: 8300000, guid: 5162c46d704fd704a82790173a2dd1c1, type: 3}
   spellCollect: {fileID: 8300000, guid: 00d5d549a705f8b4cb891c33887ca5b4, type: 3}
+--- !u!114 &7106757969148484023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6950724207108963577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abc61e6fa22917546b258f866ae2f1db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

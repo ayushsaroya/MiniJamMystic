@@ -5,13 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    private SoundController soundController;
-    private void Start()
-    {
-        soundController = GameObject.FindGameObjectWithTag("SoundController").GetComponent<SoundController>();
-    }
     public void OnPlayClick()
     {
+        SoundController soundController = GameObject.FindGameObjectWithTag("SoundController").GetComponent<SoundController>();
+        soundController.PlayClick();
         SceneManager.LoadScene("Game");
     }
 
@@ -19,6 +16,7 @@ public class SceneController : MonoBehaviour
     {
         GameObject gameCanvas = GameObject.FindGameObjectWithTag("GameCanvas");
         GameObject pauseCanvas = GameObject.FindGameObjectWithTag("PauseCanvas");
+        SoundController soundController = GameObject.FindGameObjectWithTag("SoundController").GetComponent<SoundController>();
         foreach (Transform child in gameCanvas.transform)
         {
             child.gameObject.SetActive(true);
@@ -28,10 +26,13 @@ public class SceneController : MonoBehaviour
             child.gameObject.SetActive(false);
         }
         Time.timeScale = 1;
+        soundController.PlayClick();
     }
 
     public void OnReturnToMainMenuClick()
     {
+        SoundController soundController = GameObject.FindGameObjectWithTag("SoundController").GetComponent<SoundController>();
+        soundController.PlayClick();
         SceneManager.LoadScene("Home");
     }
 
